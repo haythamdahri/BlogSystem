@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- @Header section -->
+<th:block th:insert="~{common/header :: header}"></th:block>
+
+<body>
+
+<!-- @Navbar section -->
+<th:block th:insert="~{common/navbar :: navbar}"></th:block>
+
+<hr>
+
+<!-- @Content section -->
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-10 ml-auto mr-auto">
+
+
+            <div class="card">
+                <div class="card-header bg-light text-center font-weight-bold" style="font-family: 'Helvetica Neue'">
+                    <h5 class="display-4">Sign In</h5>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+
+
+                        <th:block th:replace="~{common/messages :: messages}"></th:block>
+
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" th:if="${successMessage != null}">
+                            <div class="alert alert-success">
+                                <i class="fas fa-check-circle"></i> <strong th:text="${successMessage}"></strong>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" th:if="${errorMessage != null}">
+                            <div class="alert alert-success">
+                                <i class="fas fa-check-circle"></i> <strong th:text="${errorMessage}"></strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <blockquote class="blockquote mb-0">
+                        <form method="POST" th:action="@{/authenticate}">
+
+                            <!-- @csrf token for post is added automatically with SPRING SECURITY -->
+
+                            <!-- @Username -->
+                            <div class="form-group">
+                                <label for="username">Email</label>
+                                <input type="email" class="form-control" name="username" id="username"
+                                       aria-describedby="emailHelp"
+                                       placeholder="Enter email">
+                            </div>
+
+                            <!-- @Password -->
+                            <div class="form-group">
+                                <label for="passwordInput">Password</label>
+                                <input type="password" class="form-control" name="password" id="passwordInput"
+                                       placeholder="Password">
+                            </div>
+
+                            <!-- @Login -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login
+                                </button>
+                            </div>
+
+                        </form>
+                        <footer class="blockquote-footer" style="font-family: 'SF Pro Display'">Please provide valid
+                            data
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- @Footer section -->
+<th:block th:insert="~{common/footer :: footer}"></th:block>
+
+<!-- @Javascript Includes section -->
+<th:block th:insert="~{common/js :: javascript}"></th:block>
+
+</body>
+</html>

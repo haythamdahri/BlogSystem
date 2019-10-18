@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- @Header section -->
+<th:block th:insert="~{common/header :: header}"></th:block>
+
+<body>
+
+<!-- @Navbar section -->
+<th:block th:insert="~{common/navbar :: navbar}"></th:block>
+
+<hr>
+
+<!-- @Content section -->
+<div class="container">
+    <div class="row mb-5">
+
+        <!-- @Profile section -->
+        <div class="col-sm-12 col-md-12 col-lg-12 col-lg-12 col-xl-12 font-weight-bold">
+            <div class="card">
+
+                <!-- @Messages section -->
+                <th:block th:insert="~{common/messages :: messages}"></th:block>
+
+                <div class="card-body">
+                    <div class="card-title mb-4">
+                        <div class="d-flex justify-content-start">
+                            <div class="profile-image-container">
+                                <img th:src="${'/media/users/' + userProfile.image}" id="imgProfile"
+                                     style="width: 150px; height: 150px" class="img-thumbnail"/>
+                            </div>
+                            <div class="userData ml-3">
+                                <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a
+                                        th:href="@{'/users/' + ${userProfile.id}}" th:text="${userProfile.username}"></a></h2>
+                                <h6 class="d-block"><a th:href="@{'/users/' + ${userProfile.id} + '/posts'}" th:text="${postsCount}"></a> Blog Posts </h6>
+                            </div>
+                            <div class="ml-auto">
+                                <input type="button" class="btn btn-primary d-none" id="btnDiscard"
+                                       value="Annuler"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo"
+                                       role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="connectedServices-tab" data-toggle="tab"
+                                       href="#connectedServices" role="tab" aria-controls="connectedServices"
+                                       aria-selected="false">Connected Services</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content ml-1" id="myTabContent">
+                                <div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
+                                     aria-labelledby="basicInfo-tab">
+
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Username</label>
+                                        </div>
+                                        <div class="col-md-8 col-6" th:text="${userProfile.username}">
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Full Name</label>
+                                        </div>
+                                        <div class="col-md-8 col-6" th:text="${userProfile.fullName}">
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Opening date</label>
+                                        </div>
+                                        <div class="col-md-8 col-6" th:text="${userProfile.creationDate}">
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">First name</label>
+                                        </div>
+                                        <div class="col-md-8 col-6" th:text="${userProfile.firstName}">
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Last name</label>
+                                        </div>
+                                        <div class="col-md-8 col-6" th:text="${userProfile.lastName}">
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Posts Views</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <strong th:text="${postsViews}"></strong> <i class="fas fa-eye"></i>
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Approved Blogs</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <strong th:text="${approvedBlogsCount}"></strong> <i class="far fa-thumbs-up"></i>
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Rejected Blogs</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <strong th:text="${rejectedBlogsCount}"></strong> <i class="far fa-thumbs-down"></i>
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                </div>
+                                <div class="tab-pane fade" id="connectedServices" role="tabpanel"
+                                     aria-labelledby="ConnectedServices-tab">
+                                    Facebook, Google, Twitter Account that are connected to this account
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- @Footer section -->
+<th:block th:insert="~{common/footer :: footer}"></th:block>
+
+<!-- @Javascript Includes section -->
+<th:block th:insert="~{common/js :: javascript}"></th:block>
+
+</body>
+</html>

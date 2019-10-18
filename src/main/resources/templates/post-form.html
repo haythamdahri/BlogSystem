@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- @Header section -->
+<th:block th:insert="~{common/header :: header}"></th:block>
+
+<body>
+
+<!-- @Navbar section -->
+<th:block th:insert="~{common/navbar :: navbar}"></th:block>
+
+<hr>
+
+<!-- @Content section -->
+<div class="container">
+
+    <!-- @Messages section -->
+    <th:block th:insert="~{common/messages :: messages}"></th:block>
+
+    <!-- @Form inputs -->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 shadow-sm p-3 mb-5 bg-white rounded">
+            <form th:object="${post}" method="POST" th:action="@{/posts/save}" enctype="multipart/form-data">
+
+                <!-- @id field to save the entity object if null otherwise update it  -->
+                <input type="hidden" th:field="*{id}" />
+
+                <div class="form-group">
+                    <label for="titleInput" class="font-weight-bold">Title</label>
+                    <input type="text" th:field="*{title}" class="form-control"
+                           th:classappend="${#fields.hasErrors('title') ? 'is-invalid' : ''}" id="titleInput"
+                           placeholder="Title..." required/>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title
+                        Error
+                    </div>
+                </div>
+
+                <div class="custom-file shadow p-3 mb-5 bg-white rounded">
+                    <input type="file" name="cover_image" class="custom-file-input"
+                           th:classappend="${#fields.hasErrors('cover') ? 'is-invalid' : ''}" id="coverFieldInput"
+                           required/>
+                    <label class="custom-file-label font-weight-bold bg-secondary" for="coverFieldInput">Choose Cover...</label>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('cover')}" th:errors="*{cover}">cover
+                        Error
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="postContent" class="font-weight-bold">Content</label>
+                    <textarea class="form-control" th:field="*{content}" id="postContent"
+                              th:classappend="${#fields.hasErrors('content') ? 'is-invalid' : ''}"
+                              placeholder="Post content..." rows="30"></textarea>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"
+                         th:text="${#fields.errors('content')}"></div>
+                </div>
+
+                <button class="btn btn-secondary" type="submit"><i class="far fa-save"></i> Save post</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- @Footer section -->
+<th:block th:insert="~{common/footer :: footer}"></th:block>
+
+<!-- @Javascript Includes section -->
+<th:block th:insert="~{common/js :: javascript}"></th:block>
+
+</body>
+</html>

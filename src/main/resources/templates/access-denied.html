@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- @Header section -->
+<th:block th:insert="~{common/header :: header}"></th:block>
+
+<body>
+
+<!-- @Navbar section -->
+<th:block th:insert="~{common/navbar :: navbar}"></th:block>
+
+<hr>
+
+<!-- @Content section -->
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="alert alert-warning text-center">
+                <h5 class="display-5"><i class="fas fa-exclamation"></i> Access denied, you are not authorized to access the page.
+                    <a th:href="@{/}" >Home</a></h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- @Footer section -->
+<th:block th:insert="~{common/footer :: footer}"></th:block>
+
+<!-- @Javascript Includes section -->
+<th:block th:insert="~{common/js :: javascript}"></th:block>
+
+</body>
+</html>

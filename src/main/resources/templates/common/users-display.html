@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+
+<th:block th:fragment="users">
+    <div th:classappend="${#lists.size(users) == 1} ? 'col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3' : 'col-sm-12 col-md-4 col-lg-4 col-xl-4 mt-3'" th:each="user: ${users}">
+        <div class="card">
+            <img th:src="${'/media/users/' + user.image}" class="card-img-top" alt="..." style="width: 100%; height: 10rem;">
+            <div class="card-body text-center">
+
+                <p class="card-text"><h5 th:text="${user.username}">USERNAME</h5></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:utext="'<strong>Full name: </strong>' + ${user.fullName}"></li>
+                <li class="list-group-item" th:utext="'<strong>First name: </strong>' + ${user.firstName}"></li>
+                <li class="list-group-item" th:utext="'<strong>Last Name: </strong>' + ${user.lastName}"></li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link" th:href="@{'/users/' + ${user.id}}">Profile</a>
+                <a href="#" class="card-link" th:href="@{'/users/' + ${user.id} + '/posts'}">Articles</a>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+
+</body>
+</html>

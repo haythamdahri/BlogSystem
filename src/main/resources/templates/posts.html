@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- @Header section -->
+<th:block th:insert="~{common/header :: header}"></th:block>
+
+<body>
+
+<!-- @Navbar section -->
+<th:block th:insert="~{common/navbar :: navbar}"></th:block>
+
+<hr>
+
+<!-- @Content section -->
+<div class="container">
+    <div class="row mb-5">
+
+        <!-- @Messages section -->
+        <th:block th:insert="~{common/messages :: messages}"></th:block>
+
+
+            <!-- @Posts group content -->
+            <th:block th:unless="${postsPage.numberOfElements == 0}" th:replace="~{common/posts-content :: posts}"></th:block>
+
+        <th:block th:if="${postsPage.numberOfElements == 0}">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 alert alert-info text-center">
+                <i class="fas fa-info-circle"></i> No post has been added yet!
+            </div>
+        </th:block>
+    </div>
+</div>
+
+<!-- @Footer section -->
+<th:block th:insert="~{common/footer :: footer}"></th:block>
+
+<!-- @Javascript Includes section -->
+<th:block th:insert="~{common/js :: javascript}"></th:block>
+
+</body>
+</html>
